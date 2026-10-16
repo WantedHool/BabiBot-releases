@@ -63,9 +63,10 @@
   /* Pac-Man που τρώει τελίτσες, όπως στη μπάρα προόδου της εφαρμογής */
   .track { position: relative; height: 44px; margin: 26px auto 8px; max-width: 360px; animation: fade-up .7s .45s both; }
   .dots { position: absolute; left: 22px; right: 0; top: 50%; height: 8px; transform: translateY(-50%);
-          background: radial-gradient(circle, var(--accent-2) 0 3px, transparent 3.5px) 0 50% / 24px 8px repeat-x; }
+          background: radial-gradient(circle, var(--accent-2) 0 3px, transparent 3.5px) 0 50% / 24px 8px repeat-x; animation: dots-in 5s linear infinite; }
+  @keyframes dots-in { 0% { opacity: 0; } 5%,100% { opacity: 1; } }
   .eaten { position: absolute; left: 0; top: 0; bottom: 0; width: 0; background: var(--surface); animation: eat 5s linear infinite; }
-  .pac { position: absolute; top: 0; left: 0; width: 44px; height: 44px; border-radius: 50%; background: var(--accent);
+  .pac { position: absolute; top: 0; left: 0; width: 44px; height: 44px; border-radius: 50%; background: #FFD21F;
          animation: chomp .32s ease-in-out infinite, travel 5s linear infinite; }
   .pac::after { content: ""; position: absolute; width: 7px; height: 7px; border-radius: 50%; background: var(--surface); top: 9px; left: 22px; }
   @keyframes chomp {
@@ -73,7 +74,7 @@
     50%     { clip-path: polygon(100% 78%, 50% 50%, 100% 22%, 100% 0, 0 0, 0 100%, 100% 100%); }
   }
   /* ο Pac-Man φτάνει το φαντασματάκι στο τέλος (στο 88% του κύκλου), το πιάνει, και ξανά από την αρχή */
-  @keyframes travel { 0% { left: 0; } 88%,100% { left: calc(100% - 66px); } }
+  @keyframes travel { 0% { left: 0; opacity: 0; } 5% { left: 0; opacity: 1; } 88% { left: calc(100% - 66px); opacity: 1; } 94%,100% { left: calc(100% - 66px); opacity: 0; } }
   @keyframes eat { 0% { width: 22px; } 88% { width: calc(100% - 44px); } 92%,100% { width: 100%; } }
 
   .ghost { position: absolute; right: 0; top: 50%; width: 34px; height: 34px; margin-top: -17px; animation: ghost 5s linear infinite; }
