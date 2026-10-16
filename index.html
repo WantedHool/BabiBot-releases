@@ -146,7 +146,14 @@
 
   @media (max-width: 480px) { .card { padding: 32px 20px 24px; } h1 { font-size: 2rem; } .btn { padding: 16px 28px; font-size: 1.1rem; } }
   @media (prefers-reduced-motion: reduce) { .shot { opacity: 1; transform: none; } *, *::before, *::after { animation: none !important; transition: none !important; } .eaten { width: 0; } }
-</style>
+
+  .lb { position: fixed; inset: 0; z-index: 100; display: none; align-items: center; justify-content: center; padding: 24px;
+        background: rgba(8, 8, 16, .82); backdrop-filter: blur(4px); cursor: zoom-out; }
+  .lb.open { display: flex; }
+  .lb img { max-width: 100%; max-height: 100%; border-radius: 10px; box-shadow: 0 20px 60px rgba(0, 0, 0, .5); cursor: default; }
+  .lb button { position: absolute; top: 14px; right: 14px; width: 44px; height: 44px; border: 0; border-radius: 50%;
+               background: rgba(255, 255, 255, .16); color: #fff; font-size: 26px; line-height: 1; cursor: pointer; }
+  .lb button:hover, .lb button:focus-visible { background: rgba(255, 255, 255, .3); outline: none; }</style>
 </head>
 <body>
 <div class="blob a"></div><div class="blob b"></div>
@@ -220,6 +227,7 @@
 
 <footer>BabiBot · για Windows 10 / 11</footer>
 
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Μεγέθυνση εικόνας"><button type="button" id="lbx" aria-label="Κλείσιμο">&times;</button><img id="lbi" alt=""></div>
 <script>
   // οι οθόνες εμφανίζονται (fade + άνοδος) όταν φτάνουν στο παράθυρο
   const shots = document.querySelectorAll(".shot");
@@ -237,6 +245,16 @@
       if (/^\d+(\.\d+)*$/.test(v)) document.getElementById("ver").innerHTML = "Τελευταία έκδοση <b>" + v + "</b>";
     })
     .catch(() => {});
-</script>
+
+  // μεγέθυνση στιγμιοτύπου: κλείνει με το Χ, με Esc ή με κλικ έξω από την εικόνα
+  const lb = document.getElementById("lb"), lbi = document.getElementById("lbi");
+  const closeLb = () => { lb.classList.remove("open"); lbi.removeAttribute("src"); };
+  document.querySelectorAll("a.win").forEach(a => a.addEventListener("click", e => {
+    e.preventDefault();
+    lbi.src = a.getAttribute("href"); lbi.alt = a.querySelector("img")?.alt || "";
+    lb.classList.add("open"); document.getElementById("lbx").focus();
+  }));
+  lb.addEventListener("click", e => { if (e.target !== lbi) closeLb(); });
+  document.addEventListener("keydown", e => { if (e.key === "Escape" && lb.classList.contains("open")) closeLb(); });</script>
 </body>
 </html>
