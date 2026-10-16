@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="el">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BabiBot — Λήψη</title>
+<meta name="description" content="Κατεβάστε το BabiBot: πινακίδα ΚΣ και φύλλο επιμέτρησης για κάθε φάκελο SAP.">
+<link rel="icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAVpSURBVFhHrVdLTGNlFL59UiiUQpvCUAqUlr7vbaHcPqDUtpSCClhWLmbU0UQjcWYWJmogs5zZOWYcdTZOfEV8JJo4G4zLiTsToyt1NOjOuNEFymAi8Xi+/7aEOMzYW+ckJ5yc833f/z63SP9hBnajFrZl4EKjbVO7unuudTt66xzbtFRLZmPOGrgcq1pKp1VDM5Kvd/CFVDRN6ULlD8+Q7yVO9xkMYkNM7P3svoYjNjVq/cCCAy5rPD8fyiOvz4hIWpOrr5wpn6bUzDxlSksHA96RN+zdjlO+8dDb0ZT6pZIp/ARHjBxqwAALzpnyY1SXq1eg1Y4ZTqZXr338xKsky1maLi6x1w7UYu2vwmKdZmt1mll4SDhi5FADJs1YcMA9mV55HVqapA4TO6AsXP1241NazjxAcq5M6blFMZHJ2QXelSpNNlzEnEMNGGDBAZc1XmtrB7549iOpMpG7+PVz16meXaZEtiQGacWBrWdXCNxKKH/hxtmthqoOW46XpGlfYn2j9jQllNyxA93NwdlkruqT1x+MlRqqOsxu7ZTsFtv86ND4nsJbetwgd3NwwGWNCrR0m8XaIRlN5sXRUGJvqlDjc4ZwjRAfNyBcq2lYxOBCA1rtmMXp8ryVUIukZMsUV0IUUxIUTuUprpYbE9IcMXKoAQMsOOCyxpvQ0iRbNFtXt2Q2WxZ4Bb9hJdGpIj1z2kPnz/aRZ9BDC6VBklNhSubnhSNGDjVggI2mi81d+BVanazZsuHZ2Ht6L8emZoWIkq/SXCFIW5fd9M4lN73/sotUNUBJXjlczYzTB1dcogYMsOCACw1o6XqKti67ZDKbc0OjEztY4SQLyZkSTakxur/mF3/j00WKJXPCER+tAQsOuNAwmcw5aOqypYeflCwdtrXh8cjPyXxFrCY1w7uRw7nXKJLM0nrxlPAITwI5JYempF1UDA4uNFYeOddQ1W8Ga4dt5cRI4DtcKAg3L56Sq1AqqgpPctzMAwMsOOBCQ5Nq03Lza/wcTXKfe/BdfyS5K2fu0wbilhuZzAtHjBxqwDB2C5xsebWhcm+sw2yxrrs8Q/vD/jCNhWQKxCaFI0YONWCA1Sj30HCLe3r7L4b57KOpHPl50JHxiHDEyKEGzDE3HseA3xDtmcEgjjHC53pTnHXjLuAr2PwSarkqzv4msOA0eHa7w7nJDek97og5jpFr3fgs4T6rrfMzbPfRi/hvRw0YYMHh5ycZjaY5bka78ek5croH8FnUvRPGHqfrksc7SvF04XD1cLRb+OEkuAYMsMx5cfXRc5Kt0/44H83feCn9nhMfsl7rE2j8xvMPjQZ3fIEoD1YSW958khOJtPDm00NNZgywzPmBuUm+mNcxSdERHc7zgWgKmq2Z2EKTqTQWVvYgioaEpzYSjIkVB+Np4YiRQw0YYMfC8i1uwTdCSmYfO8O5X3hBqtmi47vE7RiTqPgjyq3mBLDF3rHQbRNADrXmBLgf0Hg0xbuzSCFZPeh2OC9AUlNu0QxGcQQBrz/8I0SxwrCSwfbeNgHkUEswBtiRiThFuUkFYlN/OvpcV1mHf9K31xSjfKE+577O5z1NIfY7TQA1YIDlbgj/HpeQNXR+idiM2uon+EZ/FUykD3CJsM3DcO56uHjNCSBGDjVggA3Ep8g96PuGNYINLX2G989HMDc6Ef8dt1t83XgQXDbtFSwST0w4YuRQAwZYcPgYdvnizUJLtx12sR7npmvAu83PaZu3dEd7bvglVCGvP7TP92MfMXKoAQMsOPwKNqChdeL2DWy8HRN/22fwpXMPDm/zP4Cf8E+3p+CIkUONMfhHEEsG5/+NfAeDuJX96INGjJzOvZakfwCsbuNQPLi6ZAAAAABJRU5ErkJggg==">
+<style>
+  :root {
+    --accent: #7C5CDB; --accent-2: #A78BFA; --accent-soft: #EEE8FD;
+    --bg: #F5F3FA; --surface: #FFFFFF; --text: #1F1B2D; --muted: #6E6884; --border: #E4DFF0;
+    --blob-a: #C9B8FF; --blob-b: #FFD3E8;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --accent: #9B80F0; --accent-2: #C4B0FF; --accent-soft: #2A2342;
+      --bg: #15121D; --surface: #1F1A2C; --text: #F0EDF8; --muted: #A59FBA; --border: #322B47;
+      --blob-a: #4B3A8F; --blob-b: #6B2D5C;
+    }
+  }
+  * { box-sizing: border-box; }
+  html, body { height: 100%; }
+  body {
+    margin: 0; background: var(--bg); color: var(--text);
+    font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+    display: flex; align-items: center; justify-content: center;
+    padding: 24px; overflow-x: hidden; position: relative;
+  }
+
+  /* κινούμενο φόντο: δύο θολές «μπάλες» που αιωρούνται */
+  .blob { position: fixed; border-radius: 50%; filter: blur(70px); opacity: .55; z-index: 0; pointer-events: none; }
+  .blob.a { width: 420px; height: 420px; background: var(--blob-a); top: -120px; left: -100px; animation: float-a 14s ease-in-out infinite; }
+  .blob.b { width: 360px; height: 360px; background: var(--blob-b); bottom: -120px; right: -80px; animation: float-b 17s ease-in-out infinite; }
+  @keyframes float-a { 0%,100% { transform: translate(0,0) scale(1); } 50% { transform: translate(90px,70px) scale(1.15); } }
+  @keyframes float-b { 0%,100% { transform: translate(0,0) scale(1); } 50% { transform: translate(-80px,-60px) scale(1.2); } }
+
+  main { position: relative; z-index: 1; width: 100%; max-width: 560px; text-align: center; }
+
+  .card {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 28px;
+    padding: 40px 32px 32px; box-shadow: 0 20px 60px rgba(124, 92, 219, .18);
+    animation: rise .8s cubic-bezier(.2,.8,.2,1) both;
+  }
+  @keyframes rise { from { opacity: 0; transform: translateY(28px) scale(.97); } to { opacity: 1; transform: none; } }
+
+  .logo {
+    width: 84px; height: 84px; margin: 0 auto 14px; border-radius: 50%; background: var(--accent-soft);
+    display: grid; place-items: center; position: relative;
+    animation: bob 3.2s ease-in-out infinite;
+  }
+  .logo::after { content: ""; position: absolute; inset: -6px; border-radius: 50%; border: 2px solid var(--accent);
+                 opacity: 0; animation: ring 3.2s ease-out infinite; }
+  .logo img { width: 64px; height: 64px; image-rendering: pixelated; }
+  @keyframes bob { 0%,100% { transform: translateY(0) rotate(-3deg); } 50% { transform: translateY(-8px) rotate(3deg); } }
+  @keyframes ring { 0% { opacity: .7; transform: scale(.95); } 70%,100% { opacity: 0; transform: scale(1.35); } }
+
+  h1 { margin: 0; font-size: 2.4rem; letter-spacing: -.5px; color: var(--accent);
+       animation: fade-up .7s .15s both; }
+  .sub { margin: 8px 0 0; color: var(--muted); line-height: 1.5; animation: fade-up .7s .3s both; }
+  @keyframes fade-up { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+
+  /* Pac-Man που τρώει τελίτσες, όπως στη μπάρα προόδου της εφαρμογής */
+  .track { position: relative; height: 44px; margin: 26px auto 8px; max-width: 360px; animation: fade-up .7s .45s both; }
+  .dots { position: absolute; left: 22px; right: 0; top: 50%; height: 8px; transform: translateY(-50%);
+          background: radial-gradient(circle, var(--accent-2) 0 3px, transparent 3.5px) 0 50% / 24px 8px repeat-x; }
+  .eaten { position: absolute; left: 0; top: 0; bottom: 0; width: 0; background: var(--surface); animation: eat 5s linear infinite; }
+  .pac { position: absolute; top: 0; left: 0; width: 44px; height: 44px; border-radius: 50%; background: var(--accent);
+         animation: chomp .32s ease-in-out infinite, travel 5s linear infinite; }
+  .pac::after { content: ""; position: absolute; width: 7px; height: 7px; border-radius: 50%; background: var(--surface); top: 9px; left: 22px; }
+  @keyframes chomp {
+    0%,100% { clip-path: polygon(100% 50%, 50% 50%, 100% 50%, 100% 0, 0 0, 0 100%, 100% 100%); }
+    50%     { clip-path: polygon(100% 78%, 50% 50%, 100% 22%, 100% 0, 0 0, 0 100%, 100% 100%); }
+  }
+  @keyframes travel { from { left: 0; } to { left: calc(100% - 44px); } }
+  @keyframes eat { from { width: 22px; } to { width: calc(100% - 22px); } }
+
+  /* το κουμπί λήψης */
+  .btn {
+    position: relative; display: inline-flex; align-items: center; gap: 12px; margin-top: 18px;
+    padding: 18px 40px; border-radius: 999px; text-decoration: none; overflow: hidden;
+    color: #fff; font-size: 1.25rem; font-weight: 700;
+    background: linear-gradient(135deg, var(--accent), #6D45D6 55%, var(--accent-2));
+    background-size: 200% 200%; animation: fade-up .7s .6s both, glow 3s ease-in-out 1.4s infinite, shift 6s ease infinite;
+    box-shadow: 0 10px 30px rgba(124, 92, 219, .45);
+    transition: transform .2s ease, box-shadow .2s ease;
+  }
+  .btn:hover { transform: translateY(-3px) scale(1.04); box-shadow: 0 16px 40px rgba(124, 92, 219, .6); }
+  .btn:active { transform: scale(.97); }
+  .btn::before { content: ""; position: absolute; top: 0; bottom: 0; width: 60px; left: -90px;
+                 background: linear-gradient(100deg, transparent, rgba(255,255,255,.55), transparent);
+                 transform: skewX(-20deg); animation: shine 3.4s ease-in-out 1.6s infinite; }
+  .btn svg { width: 24px; height: 24px; flex: none; animation: arrow 1.4s ease-in-out infinite; }
+  @keyframes shine { 0% { left: -90px; } 40%,100% { left: 130%; } }
+  @keyframes arrow { 0%,100% { transform: translateY(-2px); } 50% { transform: translateY(4px); } }
+  @keyframes glow { 0%,100% { box-shadow: 0 10px 30px rgba(124,92,219,.45); } 50% { box-shadow: 0 10px 46px rgba(124,92,219,.8); } }
+  @keyframes shift { 0%,100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
+
+  .ver { margin-top: 14px; min-height: 1.4em; color: var(--muted); font-size: .95rem; animation: fade-up .7s .75s both; }
+  .ver b { color: var(--accent); }
+
+  .steps { text-align: left; margin: 26px 0 0; padding: 0; list-style: none; display: grid; gap: 10px; animation: fade-up .7s .9s both; }
+  .steps li { display: flex; gap: 12px; align-items: flex-start; background: var(--accent-soft); border-radius: 14px; padding: 12px 14px; line-height: 1.4; }
+  .steps .n { flex: none; width: 26px; height: 26px; border-radius: 50%; background: var(--accent); color: #fff;
+              display: grid; place-items: center; font-weight: 700; font-size: .9rem; }
+  .steps small { color: var(--muted); display: block; margin-top: 2px; }
+
+  footer { margin-top: 20px; color: var(--muted); font-size: .85rem; animation: fade-up .7s 1.05s both; }
+
+  @media (max-width: 480px) { .card { padding: 32px 20px 24px; } h1 { font-size: 2rem; } .btn { padding: 16px 28px; font-size: 1.1rem; } }
+  @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } .eaten { width: 0; } }
+</style>
+</head>
+<body>
+<div class="blob a"></div><div class="blob b"></div>
+
+<main>
+  <div class="card">
+    <div class="logo"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAVpSURBVFhHrVdLTGNlFL59UiiUQpvCUAqUlr7vbaHcPqDUtpSCClhWLmbU0UQjcWYWJmogs5zZOWYcdTZOfEV8JJo4G4zLiTsToyt1NOjOuNEFymAi8Xi+/7aEOMzYW+ckJ5yc833f/z63SP9hBnajFrZl4EKjbVO7unuudTt66xzbtFRLZmPOGrgcq1pKp1VDM5Kvd/CFVDRN6ULlD8+Q7yVO9xkMYkNM7P3svoYjNjVq/cCCAy5rPD8fyiOvz4hIWpOrr5wpn6bUzDxlSksHA96RN+zdjlO+8dDb0ZT6pZIp/ARHjBxqwAALzpnyY1SXq1eg1Y4ZTqZXr338xKsky1maLi6x1w7UYu2vwmKdZmt1mll4SDhi5FADJs1YcMA9mV55HVqapA4TO6AsXP1241NazjxAcq5M6blFMZHJ2QXelSpNNlzEnEMNGGDBAZc1XmtrB7549iOpMpG7+PVz16meXaZEtiQGacWBrWdXCNxKKH/hxtmthqoOW46XpGlfYn2j9jQllNyxA93NwdlkruqT1x+MlRqqOsxu7ZTsFtv86ND4nsJbetwgd3NwwGWNCrR0m8XaIRlN5sXRUGJvqlDjc4ZwjRAfNyBcq2lYxOBCA1rtmMXp8ryVUIukZMsUV0IUUxIUTuUprpYbE9IcMXKoAQMsOOCyxpvQ0iRbNFtXt2Q2WxZ4Bb9hJdGpIj1z2kPnz/aRZ9BDC6VBklNhSubnhSNGDjVggI2mi81d+BVanazZsuHZ2Ht6L8emZoWIkq/SXCFIW5fd9M4lN73/sotUNUBJXjlczYzTB1dcogYMsOCACw1o6XqKti67ZDKbc0OjEztY4SQLyZkSTakxur/mF3/j00WKJXPCER+tAQsOuNAwmcw5aOqypYeflCwdtrXh8cjPyXxFrCY1w7uRw7nXKJLM0nrxlPAITwI5JYempF1UDA4uNFYeOddQ1W8Ga4dt5cRI4DtcKAg3L56Sq1AqqgpPctzMAwMsOOBCQ5Nq03Lza/wcTXKfe/BdfyS5K2fu0wbilhuZzAtHjBxqwDB2C5xsebWhcm+sw2yxrrs8Q/vD/jCNhWQKxCaFI0YONWCA1Sj30HCLe3r7L4b57KOpHPl50JHxiHDEyKEGzDE3HseA3xDtmcEgjjHC53pTnHXjLuAr2PwSarkqzv4msOA0eHa7w7nJDek97og5jpFr3fgs4T6rrfMzbPfRi/hvRw0YYMHh5ycZjaY5bka78ek5croH8FnUvRPGHqfrksc7SvF04XD1cLRb+OEkuAYMsMx5cfXRc5Kt0/44H83feCn9nhMfsl7rE2j8xvMPjQZ3fIEoD1YSW958khOJtPDm00NNZgywzPmBuUm+mNcxSdERHc7zgWgKmq2Z2EKTqTQWVvYgioaEpzYSjIkVB+Np4YiRQw0YYMfC8i1uwTdCSmYfO8O5X3hBqtmi47vE7RiTqPgjyq3mBLDF3rHQbRNADrXmBLgf0Hg0xbuzSCFZPeh2OC9AUlNu0QxGcQQBrz/8I0SxwrCSwfbeNgHkUEswBtiRiThFuUkFYlN/OvpcV1mHf9K31xSjfKE+577O5z1NIfY7TQA1YIDlbgj/HpeQNXR+idiM2uon+EZ/FUykD3CJsM3DcO56uHjNCSBGDjVggA3Ep8g96PuGNYINLX2G989HMDc6Ef8dt1t83XgQXDbtFSwST0w4YuRQAwZYcPgYdvnizUJLtx12sR7npmvAu83PaZu3dEd7bvglVCGvP7TP92MfMXKoAQMsOPwKNqChdeL2DWy8HRN/22fwpXMPDm/zP4Cf8E+3p+CIkUONMfhHEEsG5/+NfAeDuJX96INGjJzOvZakfwCsbuNQPLi6ZAAAAABJRU5ErkJggg==" alt=""></div>
+    <h1>BabiBot</h1>
+    <p class="sub">Πινακίδα ΚΣ και φύλλο επιμέτρησης<br>για κάθε φάκελο SAP, αυτόματα.</p>
+
+    <div class="track" aria-hidden="true">
+      <div class="dots"></div>
+      <div class="eaten"></div>
+      <div class="pac"></div>
+    </div>
+
+    <a class="btn" href="https://github.com/WantedHool/BabiBot-releases/releases/latest/download/BabiBot-Setup.exe">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M12 3v12"/><path d="M6.5 10.5 12 16l5.5-5.5"/><path d="M4 20h16"/>
+      </svg>
+      Λήψη για Windows
+    </a>
+    <div class="ver" id="ver">Κατεβαίνει πάντα η τελευταία έκδοση</div>
+
+    <ol class="steps">
+      <li><span class="n">1</span><div>Πατήστε «Λήψη για Windows»<small>Χρειάζεται σύνδεση στο internet μόνο για την εγκατάσταση.</small></div></li>
+      <li><span class="n">2</span><div>Ανοίξτε το αρχείο και ακολουθήστε τον οδηγό<small>Αν τα Windows δείξουν προειδοποίηση: «Περισσότερες πληροφορίες» → «Εκτέλεση οπωσδήποτε».</small></div></li>
+      <li><span class="n">3</span><div>Έτοιμο!<small>Οι επόμενες εκδόσεις εγκαθίστανται μόνες τους από το καμπανάκι μέσα στο πρόγραμμα.</small></div></li>
+    </ol>
+  </div>
+  <footer>BabiBot · για Windows 10 / 11</footer>
+</main>
+
+<script>
+  // «Τελευταία έκδοση x.y.z»: αν αποτύχει (χωρίς internet, όριο αιτημάτων), μένει το γενικό μήνυμα
+  fetch("https://api.github.com/repos/WantedHool/BabiBot-releases/releases/latest")
+    .then(r => r.ok ? r.json() : Promise.reject())
+    .then(j => {
+      const v = String(j.tag_name || "").replace(/^v/i, "");
+      if (/^\d+(\.\d+)*$/.test(v)) document.getElementById("ver").innerHTML = "Τελευταία έκδοση <b>" + v + "</b>";
+    })
+    .catch(() => {});
+</script>
+</body>
+</html>
