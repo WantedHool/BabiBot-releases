@@ -20,11 +20,11 @@
     }
   }
   * { box-sizing: border-box; }
-  html, body { height: 100%; }
+  html, body { min-height: 100%; }
   body {
     margin: 0; background: var(--bg); color: var(--text);
     font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
-    display: flex; align-items: center; justify-content: center;
+    display: block; padding-top: max(24px, 6vh);
     padding: 24px; overflow-x: hidden; position: relative;
   }
 
@@ -35,7 +35,7 @@
   @keyframes float-a { 0%,100% { transform: translate(0,0) scale(1); } 50% { transform: translate(90px,70px) scale(1.15); } }
   @keyframes float-b { 0%,100% { transform: translate(0,0) scale(1); } 50% { transform: translate(-80px,-60px) scale(1.2); } }
 
-  main { position: relative; z-index: 1; width: 100%; max-width: 560px; text-align: center; }
+  main { position: relative; z-index: 1; width: 100%; max-width: 560px; margin: 0 auto; text-align: center; }
 
   .card {
     background: var(--surface); border: 1px solid var(--border); border-radius: 28px;
@@ -120,10 +120,31 @@
               display: grid; place-items: center; font-weight: 700; font-size: .9rem; }
   .steps small { color: var(--muted); display: block; margin-top: 2px; }
 
-  footer { margin-top: 20px; color: var(--muted); font-size: .85rem; animation: fade-up .7s 1.05s both; }
+  footer { position: relative; z-index: 1; margin: 56px auto 32px; text-align: center; color: var(--muted); font-size: .85rem; }
+
+  /* «Δείτε πώς είναι»: τρεις οθόνες της εφαρμογής μέσα σε παράθυρο, εμφανίζονται καθώς κυλάτε */
+  .gallery { position: relative; z-index: 1; width: 100%; max-width: 980px; margin: 64px auto 0; text-align: center; }
+  .gallery > h2 { margin: 0; font-size: 1.7rem; color: var(--accent); letter-spacing: -.3px; }
+  .gallery > p { margin: 8px 0 0; color: var(--muted); }
+  .shot { margin: 40px 0 0; text-align: left; opacity: 0; transform: translateY(36px) scale(.98);
+          transition: opacity .8s ease, transform .8s cubic-bezier(.2,.8,.2,1); }
+  .shot.in { opacity: 1; transform: none; }
+  .win { display: block; text-decoration: none; color: inherit; background: var(--surface); border: 1px solid var(--border); border-radius: 16px; overflow: hidden;
+         box-shadow: 0 18px 50px rgba(124, 92, 219, .18); transition: transform .35s ease, box-shadow .35s ease; }
+  .win:hover { transform: translateY(-6px) scale(1.012); box-shadow: 0 26px 70px rgba(124, 92, 219, .32); }
+  .win .bar { display: flex; align-items: center; gap: 7px; padding: 10px 14px; background: var(--accent-soft); }
+  .win .bar i { width: 11px; height: 11px; border-radius: 50%; background: var(--accent); opacity: .35; }
+  .win .bar i:nth-child(2) { opacity: .55; } .win .bar i:nth-child(3) { opacity: .8; }
+  .win .bar span { margin-left: 8px; font-size: .8rem; color: var(--muted); }
+  .win img { display: block; width: 100%; height: auto; }
+  .shot figcaption { padding: 14px 6px 0; line-height: 1.5; color: var(--muted); }
+  .shot figcaption b { display: block; color: var(--text); font-size: 1.15rem; margin-bottom: 2px; }
+  .shot figcaption b em { font-style: normal; display: inline-grid; place-items: center; width: 26px; height: 26px; margin-right: 8px;
+                          border-radius: 50%; background: var(--accent); color: #fff; font-size: .9rem; }
+  .gallery .note { margin-top: 28px; font-size: .85rem; color: var(--muted); }
 
   @media (max-width: 480px) { .card { padding: 32px 20px 24px; } h1 { font-size: 2rem; } .btn { padding: 16px 28px; font-size: 1.1rem; } }
-  @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } .eaten { width: 0; } }
+  @media (prefers-reduced-motion: reduce) { .shot { opacity: 1; transform: none; } *, *::before, *::after { animation: none !important; transition: none !important; } .eaten { width: 0; } }
 </style>
 </head>
 <body>
@@ -162,10 +183,50 @@
       <li><span class="n">3</span><div>Έτοιμο!<small>Οι επόμενες εκδόσεις εγκαθίστανται μόνες τους από το καμπανάκι μέσα στο πρόγραμμα.</small></div></li>
     </ol>
   </div>
-  <footer>BabiBot · για Windows 10 / 11</footer>
 </main>
 
+<section class="gallery" id="gallery">
+  <h2>Δείτε πώς είναι μέσα</h2>
+  <p>Οι τρεις λειτουργίες του BabiBot, πριν το κατεβάσετε.</p>
+
+  <figure class="shot">
+    <a class="win" href="screens/1-fakelos-hmeras.png" target="_blank" rel="noopener">
+      <div class="bar"><i></i><i></i><i></i><span>BabiBot — Φάκελος ημέρας</span></div>
+      <img src="screens/1-fakelos-hmeras.png" alt="Η καρτέλα «Φάκελος ημέρας» του BabiBot" loading="lazy">
+    </a>
+    <figcaption><b><em>1</em>Φάκελος ημέρας</b>Επιλέγετε το Excel και τον φάκελο της ημέρας. Το BabiBot βρίσκει μόνο του τους φακέλους SAP και δείχνει τι χρειάζεται κάθε σχέδιο, πριν πατήσετε «Δημιουργία».</figcaption>
+  </figure>
+
+  <figure class="shot">
+    <a class="win" href="screens/2-lista-sap.png" target="_blank" rel="noopener">
+      <div class="bar"><i></i><i></i><i></i><span>BabiBot — Λίστα SAP</span></div>
+      <img src="screens/2-lista-sap.png" alt="Η καρτέλα «Λίστα SAP» του BabiBot" loading="lazy">
+    </a>
+    <figcaption><b><em>2</em>Λίστα SAP</b>Γράφετε ή επικολλάτε τους αριθμούς SAP. Το BabiBot ψάχνει τους φακέλους τους σε οποιοδήποτε βάθος και συμπληρώνει επωνυμία, διεύθυνση και συντεταγμένες από το Excel.</figcaption>
+  </figure>
+
+  <figure class="shot">
+    <a class="win" href="screens/3-dimiourgia-fakelon.png" target="_blank" rel="noopener">
+      <div class="bar"><i></i><i></i><i></i><span>BabiBot — Δημιουργία φακέλων SAP</span></div>
+      <img src="screens/3-dimiourgia-fakelon.png" alt="Η καρτέλα «Δημιουργία φακέλων SAP» του BabiBot" loading="lazy">
+    </a>
+    <figcaption><b><em>3</em>Δημιουργία φακέλων SAP</b>Φτιάχνει έναν φάκελο ανά SAP, με το σχέδιο .dwg και το φύλλο επιμέτρησης .xlsx μέσα. Με το «＋ Αρχεία» προσθέτετε δικά σας αρχεία στον φάκελο, με ένα κλικ.</figcaption>
+  </figure>
+
+  <p class="note">Τα δεδομένα στις εικόνες είναι ενδεικτικά.</p>
+</section>
+
+<footer>BabiBot · για Windows 10 / 11</footer>
+
 <script>
+  // οι οθόνες εμφανίζονται (fade + άνοδος) όταν φτάνουν στο παράθυρο
+  const shots = document.querySelectorAll(".shot");
+  if ("IntersectionObserver" in window) {
+    const io = new IntersectionObserver((entries) => entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } }),
+                                        { threshold: 0.15 });
+    shots.forEach(s => io.observe(s));
+  } else shots.forEach(s => s.classList.add("in"));
+
   // «Τελευταία έκδοση x.y.z»: αν αποτύχει (χωρίς internet, όριο αιτημάτων), μένει το γενικό μήνυμα
   fetch("https://api.github.com/repos/WantedHool/BabiBot-releases/releases/latest")
     .then(r => r.ok ? r.json() : Promise.reject())
