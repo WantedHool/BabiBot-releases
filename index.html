@@ -156,6 +156,14 @@
 
   @media (max-width: 480px) { .card { padding: 32px 20px 24px; } h1 { font-size: 2rem; } .btn { padding: 16px 28px; font-size: 1.1rem; } }
   @media (prefers-reduced-motion: reduce) { .shot { opacity: 1; transform: none; } *, *::before, *::after { animation: none !important; transition: none !important; } .eaten { width: 0; } }
+  /* η διακοσμητική κίνηση του Pac-Man τρέχει πάντα, ακόμα κι όταν τα Windows έχουν κλειστές τις animations (αλλιώς μένει στατικός με κλειστό στόμα) */
+  @media (prefers-reduced-motion: reduce) {
+    .track .dots { animation: dots-in 5s linear infinite !important; }
+    .track .eaten { animation: eat 5s linear infinite !important; }
+    .track .pac { animation: chomp .32s ease-in-out infinite, travel 5s linear infinite !important; }
+    .track .ghost { animation: ghost 5s linear infinite !important; }
+    .track .ghost .body { animation: ghost-color 5s linear infinite, wobble .5s steps(1) infinite !important; }
+  }
 
   .lb { position: fixed; inset: 0; z-index: 100; display: none; align-items: center; justify-content: center; padding: 24px;
         background: rgba(8, 8, 16, .82); backdrop-filter: blur(4px); cursor: zoom-out; }
