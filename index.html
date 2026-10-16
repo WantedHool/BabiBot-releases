@@ -72,8 +72,23 @@
     0%,100% { clip-path: polygon(100% 50%, 50% 50%, 100% 50%, 100% 0, 0 0, 0 100%, 100% 100%); }
     50%     { clip-path: polygon(100% 78%, 50% 50%, 100% 22%, 100% 0, 0 0, 0 100%, 100% 100%); }
   }
-  @keyframes travel { from { left: 0; } to { left: calc(100% - 44px); } }
-  @keyframes eat { from { width: 22px; } to { width: calc(100% - 22px); } }
+  /* ο Pac-Man φτάνει το φαντασματάκι στο τέλος (στο 88% του κύκλου), το πιάνει, και ξανά από την αρχή */
+  @keyframes travel { 0% { left: 0; } 88%,100% { left: calc(100% - 66px); } }
+  @keyframes eat { 0% { width: 22px; } 88% { width: calc(100% - 44px); } 92%,100% { width: 100%; } }
+
+  .ghost { position: absolute; right: 0; top: 50%; width: 34px; height: 34px; margin-top: -17px; animation: ghost 5s linear infinite; }
+  .ghost svg { width: 100%; height: 100%; display: block; overflow: visible; }
+  .ghost .body { fill: #F03C46; transform-box: fill-box; transform-origin: 50% 100%;
+                 animation: ghost-color 5s linear infinite, wobble .5s steps(1) infinite; }
+  /* κόκκινο, μπλε (φοβισμένο) όσο πλησιάζει ο Pac-Man, «πουφ» όταν τον πιάνει, και επιστρέφει κόκκινο στον νέο κύκλο */
+  @keyframes ghost-color { 0%,62% { fill: #F03C46; } 70%,96% { fill: #3C5AE6; } 99%,100% { fill: #F03C46; } }
+  @keyframes ghost {
+    0%,87% { opacity: 1; transform: none; }
+    88%    { opacity: 1; transform: scale(1.35); }
+    91%,97% { opacity: 0; transform: scale(.2); }
+    100%   { opacity: 1; transform: none; }
+  }
+  @keyframes wobble { 0%,100% { transform: scaleY(1); } 50% { transform: scaleY(.88); } }
 
   /* το κουμπί λήψης */
   .btn {
@@ -124,6 +139,13 @@
       <div class="dots"></div>
       <div class="eaten"></div>
       <div class="pac"></div>
+      <div class="ghost">
+        <svg viewBox="0 0 34 34">
+          <path class="body" d="M2 17A15 15 0 0 1 32 17V32L27 27L22 32L17 27L12 32L7 27L2 32Z"/>
+          <circle cx="11.5" cy="15" r="4.2" fill="#fff"/><circle cx="22.5" cy="15" r="4.2" fill="#fff"/>
+          <circle cx="13" cy="16" r="2" fill="#1E2896"/><circle cx="24" cy="16" r="2" fill="#1E2896"/>
+        </svg>
+      </div>
     </div>
 
     <a class="btn" href="https://github.com/WantedHool/BabiBot-releases/releases/latest/download/BabiBot-Setup.exe">
