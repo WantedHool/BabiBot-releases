@@ -1,0 +1,293 @@
+<!doctype html>
+<html lang="el">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BabiBot — Οδηγίες χρήσης</title>
+<!-- Web έκδοση των οδηγιών του BabiBot (ίδιο περιεχόμενο με το ΟΔΗΓΙΕΣ.pdf του προγράμματος). -->
+<style>
+  @page { size: A4; margin: 14mm 15mm 16mm; }
+  :root {
+    --accent: #7C5CDB; --accent-soft: #EEE8FD; --text: #1F1B2D; --muted: #6E6884;
+    --border: #E4DFF0; --surface: #FFFFFF; --window: #F5F3FA;
+    --ok: #2E7D4F; --warn: #B36200; --err: #C62839; --editable: #FFF8DC; --problem: #FDECEF;
+  }
+  * { box-sizing: border-box; }
+  body { font-family: "Segoe UI", system-ui, sans-serif; color: var(--text); font-size: 10.5pt; line-height: 1.45; margin: 0; }
+  h1 { font-size: 22pt; margin: 0; color: var(--accent); }
+  h2 { font-size: 13.5pt; margin: 18px 0 8px; display: flex; align-items: center; gap: 8px; }
+  h2 { break-after: avoid; }
+  h2 .n { background: var(--accent); color: #fff; border-radius: 50%; width: 24px; height: 24px; font-size: 11pt;
+          display: inline-flex; align-items: center; justify-content: center; flex: none; }
+  p { margin: 6px 0; }
+  .header { display: flex; align-items: center; gap: 14px; padding: 14px 18px; background: var(--window);
+            border: 1px solid var(--border); border-radius: 14px; }
+  .header img { width: 48px; height: 48px; border-radius: 50%; background: var(--accent-soft); padding: 8px; }
+  .header .sub { color: var(--muted); margin-top: 2px; }
+  .header .ver { margin-left: auto; color: var(--muted); font-size: 9.5pt; text-align: right; }
+  .card { border: 1px solid var(--border); border-radius: 12px; padding: 10px 14px; margin: 8px 0; background: var(--surface); }
+  .tip { background: var(--accent-soft); border: none; }
+  .warn { background: #FFF4E5; border: none; }
+  .shot { position: relative; margin: 8px 0 4px; }
+  .shot img { width: 100%; border: 1px solid var(--border); border-radius: 10px; display: block; }
+  .pin { position: absolute; transform: translate(-50%, -50%); background: var(--accent); color: #fff; font-weight: 700;
+         width: 22px; height: 22px; border-radius: 50%; font-size: 10pt; display: flex; align-items: center; justify-content: center;
+         box-shadow: 0 0 0 3px #fff; }
+  .legend { display: grid; grid-template-columns: 1fr 1fr; gap: 4px 18px; margin-top: 8px; }
+  .legend div { display: flex; gap: 8px; align-items: baseline; }
+  .legend b.p { background: var(--accent); color: #fff; border-radius: 50%; min-width: 18px; height: 18px; font-size: 8.5pt;
+                display: inline-flex; align-items: center; justify-content: center; }
+  ol.steps { margin: 4px 0; padding-left: 20px; }
+  ol.steps li { margin: 6px 0; }
+  code, .mono { font-family: "Cascadia Mono", Consolas, monospace; font-size: 9.5pt; background: var(--window);
+                padding: 1px 5px; border-radius: 5px; }
+  table { width: 100%; border-collapse: collapse; margin: 6px 0; font-size: 10pt; }
+  th { text-align: left; color: var(--muted); font-weight: 600; border-bottom: 1px solid var(--border); padding: 6px 8px; }
+  td { padding: 6px 8px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  tr:last-child td { border-bottom: none; }
+  .ok { color: var(--ok); font-weight: 600; } .w { color: var(--warn); font-weight: 600; }
+  .e { color: var(--err); font-weight: 600; } .m { color: var(--muted); font-weight: 600; }
+  .chip { display: inline-block; border-radius: 6px; padding: 0 6px; }
+  .chip.y { background: var(--editable); } .chip.r { background: var(--problem); }
+  .break { break-before: page; }
+  .avoid { break-inside: avoid; }
+  .foot { color: var(--muted); font-size: 9pt; margin-top: 18px; text-align: center; }
+
+  /* --- web: κεντραρισμένη στήλη, σκούρο θέμα, κινητό --- */
+  html { background: var(--window); }
+  body { max-width: 880px; margin: 0 auto; padding: 24px 16px 40px; background: var(--window); }
+  a { color: var(--accent); }
+  .header, .card, table { background: var(--surface); }
+  .table-wrap { overflow-x: auto; }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --accent: #9B80F0; --accent-soft: #2A2342; --text: #F0EDF8; --muted: #A59FBA;
+      --border: #322B47; --surface: #1F1A2C; --window: #15121D;
+      --ok: #6FCF97; --warn: #F2A65A; --err: #FF7A8A; --editable: #4A4120; --problem: #4D2430;
+    }
+    .warn { background: #3A2C17; }
+    .shot img { filter: brightness(.92); }
+    code, .mono { background: #2A2342; }
+  }
+  @media (max-width: 640px) {
+    body { font-size: 10pt; }
+    .header { flex-wrap: wrap; }
+    .header .ver { margin-left: 0; text-align: left; width: 100%; }
+    .legend { grid-template-columns: 1fr; }
+    table { display: block; overflow-x: auto; }
+    .pin { display: none; }
+  }
+  @media print { .header .ver a { display: none; } }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <img src="screens/odigies-cat.png" alt="">
+  <div>
+    <h1>BabiBot</h1>
+    <div class="sub">Οδηγίες χρήσης · Πινακίδα ΚΣ και φύλλο επιμέτρησης για κάθε φάκελο SAP</div>
+  </div>
+  <div class="ver"><a href="./">← Λήψη</a><br><a href="odigies.pdf">Λήψη ως PDF</a></div>
+</div>
+
+<h2>Τι κάνει</h2>
+<p>
+  Διαλέγετε το <b>Excel του ΔΕΔΔΗΕ</b> και τον <b>φάκελο της ημέρας</b>. Για κάθε υποφάκελο με αριθμό SAP,
+  το BabiBot φτιάχνει μέσα στον φάκελο δύο αρχεία:
+  το <b>σχέδιο <span class="mono">&lt;SAP&gt;.dwg</span></b> με συμπληρωμένη πινακίδα και το
+  <b>φύλλο επιμέτρησης <span class="mono">&lt;SAP&gt;.xlsx</span></b>.
+  Το Excel μπορεί να το <b>κατεβάσει μόνο του από τη σελίδα του ΔΕΔΔΗΕ</b> (κουμπί «Λήψη από ΔΕΔΔΗΕ»), μαζί με τον
+  <b>αριθμό GIS</b> κάθε εντολής, που γράφεται στο «ΟΝ. ΕΡΓΟΥ (GIS)» της πινακίδας.
+</p>
+
+<h2><span class="n">1</span>Εγκατάσταση</h2>
+<div class="card">
+  <p>Πατήστε <b>«Λήψη για Windows»</b> στη <a href="./">σελίδα λήψης</a> και ανοίξτε το <b>BabiBot-Setup.exe</b>. Ακολουθήστε τον οδηγό (δεν χρειάζονται
+     δικαιώματα διαχειριστή) και θα βρείτε το BabiBot στο μενού Έναρξη. Το Setup κατεβάζει πάντα την <b>τελευταία έκδοση</b>.</p>
+  <p>Αν την πρώτη φορά τα Windows γράψουν <i>«Τα Windows προστάτευσαν τον υπολογιστή σας»</i>: πατήστε
+     <b>«Περισσότερες πληροφορίες»</b> → <b>«Εκτέλεση οπωσδήποτε»</b>. (Το πρόγραμμα δεν είναι ψηφιακά υπογεγραμμένο.)</p>
+  <p><b>Microsoft WebView2:</b> η «Λήψη από ΔΕΔΔΗΕ» χρησιμοποιεί το WebView2 Runtime της Microsoft (το ίδιο που έχει ο Microsoft Edge).
+     Στα περισσότερα Windows υπάρχει ήδη· αν λείπει, το Setup το <b>εγκαθιστά μόνο του</b> (χρειάζεται internet την ώρα της εγκατάστασης).</p>
+  <p><b>Ενημερώσεις:</b> όταν βγει νέα έκδοση, εμφανίζεται πάνω δεξιά ένα <b>καμπανάκι</b> με το μήνυμα «Νέα έκδοση».
+     Πατήστε το → «Ενημέρωση» και το BabiBot ενημερώνεται μόνο του: κλείνει και ξανανοίγει σε λίγα δευτερόλεπτα.
+     Ο έλεγχος γίνεται όταν ανοίγετε το πρόγραμμα (χρειάζεται internet).</p>
+</div>
+
+<h2><span class="n">2</span>Η οθόνη</h2>
+<div class="shot avoid">
+  <img src="screens/odigies-screen.png" alt="Η οθόνη του BabiBot">
+  <!-- θέσεις σε % του screenshot (1394 × 796) -->
+  <div class="pin" style="left:73.9%; top:19.1%">1</div>
+  <div class="pin" style="left:73.9%; top:24.6%">2</div>
+  <div class="pin" style="left:24.0%; top:37.7%">3</div>
+  <div class="pin" style="left:35.9%; top:37.7%">4</div>
+  <div class="pin" style="left:80.0%; top:92.7%">5</div>
+  <div class="pin" style="left:69.9%; top:92.7%">6</div>
+  <div class="pin" style="left:95.5%; top:7.8%">7</div>
+  <div class="pin" style="left:87.2%; top:83.9%">8</div>
+  <div class="pin" style="left:4.4%; top:12.6%">9</div>
+  <div class="pin" style="left:89.4%; top:12.3%">10</div>
+</div>
+<div class="legend">
+  <div><b class="p">1</b><span><b>Excel ΔΕΔΔΗΕ</b>: το αρχείο εντολών</span></div>
+  <div><b class="p">5</b><span><b>Δημιουργία</b> των σχεδίων</span></div>
+  <div><b class="p">2</b><span><b>Φάκελος ημέρας</b> και «Άνοιγμα φακέλου»</span></div>
+  <div><b class="p">6</b><span><b>Αναίρεση</b> της τελευταίας δημιουργίας</span></div>
+  <div><b class="p">3</b><span><b>Συντεταγμένες</b> (και «Αρ. GIS» δίπλα): οι στήλες που γράφετε</span></div>
+  <div><b class="p">7</b><span><b>Θέμα</b>: ανοιχτό / σκούρο</span></div>
+  <div><b class="p">4</b><span><b>Έλεγχος</b>: τι χρειάζεται κάθε σχέδιο</span></div>
+  <div><b class="p">8</b><span><b>Πρότυπα</b> DWG και Excel (σπάνια αλλάζουν)</span></div>
+  <div><b class="p">9</b><span><b>Καρτέλες</b>: Φάκελος ημέρας, Λίστα SAP, Δημιουργία φακέλων SAP</span></div>
+  <div><b class="p">10</b><span><b>Οδηγίες</b>: ανοίγει αυτό το αρχείο</span></div>
+</div>
+<p class="foot" style="text-align:left; margin-top:6px">Στη φωτογραφία δεν φαίνεται το κουμπί <b>«⬇ Λήψη από ΔΕΔΔΗΕ»</b> (δεξιά από το «Επιλογή…» του Excel) ούτε το γρανάζι των
+   <b>Ρυθμίσεων</b> (πάνω δεξιά, δίπλα στο κουμπί «Οδηγίες»). Δείτε την επόμενη ενότητα.</p>
+
+<div class="break"></div>
+
+<h2><span class="n">3</span>Λήψη από ΔΕΔΔΗΕ (το Excel μόνο του)</h2>
+<p>Αντί να μπαίνετε εσείς στη σελίδα του ΔΕΔΔΗΕ και να κατεβάζετε το Excel, το BabiBot το φέρνει μόνο του. Σας ζητά
+   <b>μόνο το captcha</b> του login.</p>
+<div class="card avoid">
+  <p><b>Μία φορά, στις Ρυθμίσεις</b> (το γρανάζι πάνω δεξιά → καρτέλα <b>«ΔΕΔΔΗΕ»</b>):</p>
+  <table>
+    <tr><td style="width:30%"><b>Όνομα χρήστη / Κωδικός</b></td><td>Τα στοιχεία σας στο portal του ΔΕΔΔΗΕ. Το BabiBot τα γράφει μόνο του στη σελίδα login.
+        Ο κωδικός αποθηκεύεται <b>κρυπτογραφημένος</b> και ανοίγει μόνο από τον δικό σας λογαριασμό των Windows.
+        Αν τα αφήσετε κενά, τα γράφετε εσείς κάθε φορά.</td></tr>
+    <tr><td><b>Γραφεία</b></td><td>Οι κωδικοί των γραφείων που θέλετε, με κόμμα, π.χ. <span class="mono">770,771,772</span>.</td></tr>
+    <tr><td><b>Ημ. Επίδοσης από</b></td><td>Φέρνει τις εντολές με ημερομηνία επίδοσης από αυτή και μετά, π.χ. <span class="mono">01-01-2023</span> (μορφή ηη-μμ-εεεε).</td></tr>
+  </table>
+  <p style="margin-bottom:2px">Η κατάσταση «Ανοιχτές» και το συνεργείο «Όλα» είναι σταθερά, όπως τα βάζετε και στο portal.</p>
+</div>
+<ol class="steps">
+  <li>Πατήστε <b>«⬇ Λήψη από ΔΕΔΔΗΕ»</b>. Ανοίγει ένα παράθυρο με τη σελίδα login. Το όνομα χρήστη και ο κωδικός έχουν ήδη γραφτεί.</li>
+  <li>Γράψτε το <b>captcha</b> (τα γράμματα της εικόνας) και πατήστε <b>«Είσοδος»</b>. Αν στο αναπτυσσόμενο μενού εφαρμογής δεν είναι
+      επιλεγμένη κάποια, διαλέξτε «Ενέργειες Πεδίου». Την πρώτη φορά που θα τη διαλέξετε, το BabiBot τη θυμάται.</li>
+  <li>Μόλις μπείτε, το παράθυρο <b>κρύβεται</b> και δεν χρειάζεται να κάνετε τίποτα άλλο. Κάτω τρέχει η μπάρα με τον πακμαν και η εφαρμογή
+      είναι κλειδωμένη όσο διαρκεί. Αν η σελίδα καθυστερεί πολύ, το <b>✕</b> δίπλα στη μπάρα σταματά τη λήψη.</li>
+  <li>Στο τέλος το BabiBot κάνει <b>logout</b>, κλείνει το παράθυρο και <b>φορτώνει το Excel</b>. Το αρχείο αποθηκεύεται ως
+      <span class="mono">ΔΕΔΔΗΕ_ημερομηνία_ώρα.xls</span> στον φάκελο που χρησιμοποιήσατε τελευταίο για Excel (αλλιώς στις «Λήψεις»),
+      και έχει μία επιπλέον στήλη, <b>«Αρ. GIS»</b>.</li>
+</ol>
+<div class="card tip avoid">
+  <b>Αριθμός GIS:</b> το BabiBot ανοίγει εσωτερικά το εικονίδιο <b>ⓘ</b> κάθε εντολής (αυτό δίπλα στο «51-Εκπόνηση Μελέτης» του portal)
+  και αντιγράφει τον «Αρ. GIS». Γράφεται στο «ΟΝ. ΕΡΓΟΥ (GIS)» της πινακίδας. Αν μια εντολή δεν έχει GIS στο portal, το πεδίο μένει <b>κενό</b>
+  (όχι ο αριθμός SAP). Ο αριθμός GIS υπάρχει μόνο στα Excel που κατεβάζει η «Λήψη από ΔΕΔΔΗΕ».
+</div>
+
+<h2><span class="n">4</span>Βήμα-βήμα</h2>
+<ol class="steps">
+  <li><b>Excel ΔΕΔΔΗΕ → «Επιλογή…»</b> και διαλέξτε το αρχείο εντολών (.xls) (ή πατήστε <b>«Λήψη από ΔΕΔΔΗΕ»</b> και θα φορτωθεί μόνο του).</li>
+  <li><b>Φάκελος ημέρας → «Επιλογή…»</b> και διαλέξτε τον φάκελο της ημέρας, π.χ. <span class="mono">13-10-2026</span>.
+      Μέσα του πρέπει να υπάρχει ένας υποφάκελος για κάθε σχέδιο, με όνομα τον αριθμό SAP
+      (<span class="mono">13-10-2026\610172611581</span>, …). Υποφάκελοι με άλλο όνομα αγνοούνται.</li>
+  <li>Η λίστα γεμίζει μόνη της. Επωνυμία, τόπος, διεύθυνση και αρ. παροχής έρχονται από το Excel.
+      Οι <b>συντεταγμένες</b> έρχονται από το Excel όταν τις έχει. Αλλιώς ο «Έλεγχος» γράφει
+      <span class="w">«Χωρίς συντεταγμένες»</span>: μπορείτε να τις γράψετε στην
+      <span class="chip y">κίτρινη</span> στήλη, π.χ. <span class="mono">37.9302603, 24.0095985</span>
+      (επικόλληση από Google Maps), ή να τις αφήσετε κενές και να τις συμπληρώσετε μετά στο σχέδιο.
+      Τα X / Y υπολογίζονται αυτόματα. Δίπλα τους υπάρχει η <span class="chip y">κίτρινη</span> στήλη <b>«Αρ. GIS»</b>: έρχεται από το Excel
+      (Λήψη από ΔΕΔΔΗΕ) και, αν λείπει, μπορείτε να τον γράψετε εσείς. Κενή στήλη = κενό «ΟΝ. ΕΡΓΟΥ (GIS)» στο σχέδιο, χωρίς να εμποδίζει τη δημιουργία.</li>
+  <li>Ρίξτε μια ματιά στη στήλη <b>«Έλεγχος»</b> (πίνακας παρακάτω).</li>
+  <li>Πατήστε <b>«Δημιουργία»</b>. Η μπάρα προόδου γεμίζει και στο τέλος βλέπετε πόσα σχέδια φτιάχτηκαν.
+      Με <b>«Άνοιγμα φακέλου»</b> πηγαίνετε κατευθείαν στα αρχεία.</li>
+</ol>
+<div class="card tip">
+  <b>Κάτι βγήκε λάθος;</b> Πατήστε <b>«Αναίρεση»</b>: σβήνει ό,τι έφτιαξε η τελευταία «Δημιουργία» και οι φάκελοι γίνονται
+  όπως ήταν. Διορθώνετε και ξαναπατάτε «Δημιουργία». (Ισχύει για την τελευταία δημιουργία, μέχρι να κλείσει το πρόγραμμα.)
+</div>
+
+<h2><span class="n">5</span>Οι τέσσερις καρτέλες</h2>
+<p>Πάνω από τη λίστα υπάρχουν τέσσερις καρτέλες. Το Excel και τα πρότυπα είναι τα ίδια στις τρεις πρώτες· η τέταρτη είναι αυτόνομη.
+   (Τα ονόματα των καρτελών αλλάζουν από τις Ρυθμίσεις.)</p>
+<table class="avoid">
+  <tr><th style="width:26%">Καρτέλα</th><th>Πότε τη χρησιμοποιείτε</th></tr>
+  <tr><td><b>Φάκελος ημέρας</b></td><td>Οι φάκελοι SAP υπάρχουν ήδη, όλοι μέσα σε έναν φάκελο ημέρας (τα βήματα παραπάνω).</td></tr>
+  <tr><td><b>Λίστα SAP</b></td><td>Οι φάκελοι SAP υπάρχουν αλλά είναι σκόρπιοι μέσα σε έναν φάκελο (π.χ. του Dropbox). Επιλέγετε αυτόν τον φάκελο και
+      γράφετε τους αριθμούς SAP (<b>+ Προσθήκη SAP</b>, <b>✕</b> για αφαίρεση, ή <b>Ctrl+V</b> για πολλούς μαζί από μια στήλη του Excel).
+      Το BabiBot βρίσκει τον φάκελο κάθε SAP σε οποιοδήποτε βάθος και γράφει μέσα το .dwg και το .xlsx. Αν δεν βρεθεί
+      ακριβώς ένας φάκελος με αυτό το όνομα, το σχέδιο δεν δημιουργείται.</td></tr>
+  <tr><td><b>Δημιουργία φακέλων SAP</b></td><td>Οι φάκελοι <b>δεν υπάρχουν</b> και θέλετε να φτιαχτούν από το BabiBot.
+      Επιλέγετε το Excel και τον <b>φάκελο προορισμού</b> (π.χ. ο νέος φάκελος της ημέρας· το παράθυρο επιτρέπει «Δημιουργία νέου φακέλου»),
+      γράφετε τους αριθμούς SAP όπως στη Λίστα SAP και πατάτε <b>«Δημιουργία φακέλων»</b>. Μέσα στον προορισμό φτιάχνεται ένας
+      φάκελος με όνομα κάθε SAP και μέσα του το .dwg και το .xlsx. Μόνο για SAP που υπάρχουν στο Excel· αν υπάρχει ήδη
+      φάκελος με το ίδιο όνομα, παραλείπεται και δεν αγγίζεται.</td></tr>
+  <tr><td><b>Συμπλήρωση λίστας</b></td><td>Αυτόνομη καρτέλα, με δικό της Excel και φάκελο. Διαβάζει τα <b>PDF των σχεδίων</b> ενός φακέλου και συμπληρώνει στη
+      <b>λίστα παραδοτέων</b> (Excel) την παροχή, τη διεύθυνση, την περιοχή, την ημερομηνία επίδοσης, το κόστος μελέτης και τον μελετητή
+      (το όνομα του μελετητή ορίζεται στις Ρυθμίσεις → «Μελετητής»). Το αρχικό Excel δεν αλλάζει: γράφεται αντίγραφο
+      «… (συμπληρωμένο).xlsx» δίπλα του.</td></tr>
+</table>
+<div class="card tip avoid">
+  <b>＋ Αρχεία (Δημιουργία φακέλων SAP):</b> μόλις δημιουργηθεί ένας φάκελος, στη γραμμή του εμφανίζεται το κουμπί
+  <b>«＋ Αρχεία»</b>. Πατήστε το, διαλέξτε φωτογραφίες, PDF ή ό,τι άλλο θέλετε (πολλά μαζί) και πατήστε «Άνοιγμα»:
+  τα αρχεία <b>αντιγράφονται</b> μέσα στον φάκελο SAP και τα πρωτότυπα μένουν στη θέση τους. Δίπλα στο κουμπί φαίνεται πόσα έχουν μπει.
+  Αρχείο με ίδιο όνομα δεν αντικαθίσταται ποτέ (παραλείπεται και σας το λέει). Σε αυτή την καρτέλα δεν υπάρχει «Αναίρεση».
+</div>
+
+<h2><span class="n">6</span>Τι σημαίνει ο «Έλεγχος»</h2>
+<table class="avoid">
+  <tr><th style="width:42%">Μήνυμα</th><th>Τι σημαίνει / τι κάνετε</th></tr>
+  <tr><td><i>(κενό)</i></td><td>Έτοιμο. Θα δημιουργηθεί.</td></tr>
+  <tr><td class="w">N παροχές στο ίδιο SAP</td><td>Θα δημιουργηθεί κανονικά, με όλους τους αριθμούς παροχής. Απλή ενημέρωση.</td></tr>
+  <tr><td class="w">Χωρίς συντεταγμένες</td><td>Το Excel δεν έχει συντεταγμένες. Θα δημιουργηθεί κανονικά· πλάτος/μήκος και X/Y μένουν όπως στο πρότυπο, για να τα συμπληρώσετε στο σχέδιο. Ή γράψτε τις στην κίτρινη στήλη πριν τη «Δημιουργία».</td></tr>
+  <tr><td class="e">Δεν βρέθηκε στο Excel</td><td>Ο αριθμός SAP του φακέλου δεν υπάρχει στο Excel. Συνήθως το Excel είναι παλιό: κατεβάστε νέο.</td></tr>
+  <tr><td class="m">Υπάρχει ήδη .dwg, .xlsx</td><td>Ο φάκελος έχει ήδη σχέδιο ή φύλλο. <b>Δεν αγγίζεται ποτέ.</b> Αν θέλετε να ξαναφτιαχτεί, σβήστε τα αρχεία πρώτα.</td></tr>
+  <tr><td class="m">Υπάρχει ήδη ο φάκελος</td><td>(Δημιουργία φακέλων SAP) Στον προορισμό υπάρχει ήδη φάκελος με αυτό το όνομα. Δεν αγγίζεται.</td></tr>
+  <tr><td class="e">Επιλέξτε τον φάκελο…</td><td>Λείπει ο φάκελος ημέρας / προορισμού / αναζήτησης ή ο αριθμός SAP.</td></tr>
+  <tr><td class="ok">Δημιουργήθηκε</td><td>Το έφτιαξε μόλις το BabiBot.</td></tr>
+</table>
+<p>Η λίστα δείχνει πρώτα τα έτοιμα, μετά όσα θέλουν συντεταγμένες, μετά όσα υπάρχουν ήδη και τελευταία όσα δεν βρέθηκαν.
+   Κλικ σε επικεφαλίδα ταξινομεί κατά τη στήλη· δεξί κλικ → «Ταξινόμηση: έτοιμα πρώτα» για επιστροφή.</p>
+
+<div class="avoid">
+<h2><span class="n">7</span>Τι μπαίνει στην πινακίδα</h2>
+<table>
+  <tr><th style="width:32%">Πινακίδα</th><th>Από πού</th></tr>
+  <tr><td>ΑΡ. ΠΑΡΟΧΗΣ</td><td>«Αρ. Παροχής» χωρίς το 1ο και τα 2 τελευταία ψηφία (70602244402 → <b>06022444</b>). Με πολλές παροχές, όλες με κόμμα.</td></tr>
+  <tr><td>ΕΠΩΝΥΜΙΑ ΠΕΛΑΤΗ</td><td>«Ονομα»</td></tr>
+  <tr><td>ΤΟΠΟΣ / ΔΙΕΥΘΥΝΣΗ ΕΡΓΟΥ</td><td>«Πόλη» / «Οδός» + «Αρ.» (όπως στο Excel — διορθώστε στο σχέδιο αν θέλετε)</td></tr>
+  <tr><td>ΑΡ./ΗΜΕΡ. ΑΙΤΗΜΑΤΟΣ</td><td>«Ημ. Επίδοσης»</td></tr>
+  <tr><td>Κουτάκια SAP</td><td>Ο αριθμός SAP (όνομα του φακέλου).</td></tr>
+  <tr><td>ΟΝ. ΕΡΓΟΥ (GIS)</td><td>Η στήλη «Αρ. GIS», που προσθέτει η «Λήψη από ΔΕΔΔΗΕ». Αν λείπει (π.χ. Excel που κατέβηκε με το χέρι, ή εντολή χωρίς GIS στο portal), μένει <b>κενό</b>.</td></tr>
+  <tr><td>ΓΕΩΓΡ. ΠΛΑΤΟΣ / ΜΗΚΟΣ</td><td>Οι συντεταγμένες της λίστας, 7 δεκαδικά με κόμμα (37,9302603)</td></tr>
+  <tr><td>X / Y (ΕΓΣΑ87)</td><td>Υπολογισμός όπως το calcfun.eu, ακέραια μέτρα (τα δεκαδικά κόβονται)</td></tr>
+  <tr><td>Φύλλο επιμέτρησης</td><td>«ΦΥΛΛΟ ΕΠΙΜΕΤΡΗΣΗΣ ΕΝΤΟΛΗΣ ΔΙΚΤΥΟΥ SAP/PS :<b>610172611581</b>» (γραμμή 6)</td></tr>
+</table>
+</div>
+
+<h2><span class="n">8</span>Αν κάτι δεν πάει καλά</h2>
+<div class="card warn avoid">
+  <p><b>Λήψη από ΔΕΔΔΗΕ: «Δεν φορτώθηκε η σελίδα…» / «Η σελίδα δεν έχτισε το μενού»</b> — Στη σελίδα login δεν είχε επιλεγεί εφαρμογή.
+     Διαλέξτε «Ενέργειες Πεδίου» στο αναπτυσσόμενο μενού πριν πατήσετε «Είσοδος».</p>
+  <p><b>Λήψη από ΔΕΔΔΗΕ: «Λείπει το Microsoft WebView2 Runtime»</b> — Εγκαταστήστε ξανά το BabiBot (το Setup το εγκαθιστά, χρειάζεται internet).</p>
+  <p><b>Λήψη από ΔΕΔΔΗΕ: λάθος στοιχεία ή captcha</b> — Η σελίδα το γράφει και μένει στο login. Ξαναγράψτε το captcha ή διορθώστε τα στοιχεία στις
+     Ρυθμίσεις → «ΔΕΔΔΗΕ». Αν κλείσετε το παράθυρο του login, η λήψη ακυρώνεται χωρίς πρόβλημα.</p>
+  <p><b>Λήψη από ΔΕΔΔΗΕ: αργεί</b> — Η σελίδα του ΔΕΔΔΗΕ είναι συχνά αργή. Περιμένετε, ή πατήστε ✕ και ξαναδοκιμάστε αργότερα.</p>
+  <p><b>«Δεν ήταν δυνατή η εγγραφή… είναι ανοιχτό;»</b> — Κλείστε το σχέδιο στο AutoCAD ή το φύλλο στο Excel και ξαναπατήστε «Δημιουργία».</p>
+  <p><b>«Δεν βρέθηκε η στήλη…» στο Excel</b> — Μην ανοίγετε και αποθηκεύετε το Excel του ΔΕΔΔΗΕ πριν το δώσετε στο BabiBot:
+     το Excel το σώζει ως «ιστοσελίδα» και χάνονται τα δεδομένα. Κατεβάστε το ξανά (ή «Αποθήκευση ως» → Βιβλίο εργασίας Excel .xlsx).</p>
+  <p><b>Στο AutoCAD: «Non Autodesk DWG…»</b> — Εμφανίζεται σε σχέδια που δεν έφτιαξε πρόγραμμα της Autodesk. Είναι ακίνδυνο·
+     κλείνει μόνιμα με την εντολή <span class="mono">DWGCHECK</span> = <span class="mono">0</span>.</p>
+</div>
+
+<h2><span class="n">9</span>Χρήσιμα</h2>
+<ul>
+  <li><b>Ρυθμίσεις (γρανάζι πάνω δεξιά):</b> <b>Διαμέρισμα</b> (ποια περιοχή παίρνει ποιο γράμμα στο «ΔΙΑΜΕΡΙΣΜΑ :»),
+      <b>Μελετητής</b> (για τη «Συμπλήρωση λίστας»), <b>Ονόματα λειτουργιών</b> (τα ονόματα των καρτελών) και <b>ΔΕΔΔΗΕ</b>
+      (στοιχεία σύνδεσης, γραφεία, ημερομηνία επίδοσης για τη «Λήψη από ΔΕΔΔΗΕ»).</li>
+  <li><b>Θέμα και χρώμα:</b> τα στρογγυλά κουμπιά πάνω δεξιά: φεγγάρι / ήλιος αλλάζει αμέσως ανοιχτό ↔ σκούρο, και η παλέτα
+      αλλάζει το χρώμα έμφασης (μωβ, μπλε, κόκκινο).</li>
+  <li><b>Οδηγίες:</b> το κουμπί «Οδηγίες» δεξιά από τις καρτέλες ανοίγει αυτό το αρχείο.</li>
+  <li><b>Άνοιγμα αρχείων:</b> δεξί κλικ σε γραμμή → άνοιγμα φακέλου SAP, σχεδίου (.dwg) ή φύλλου επιμέτρησης (.xlsx).
+      Διπλό κλικ σε κελί που δεν γράφεται ανοίγει τον φάκελο.</li>
+  <li><b>Στήλες:</b> τραβήξτε το όριο στις επικεφαλίδες για να αλλάξετε πλάτος· το πρόγραμμα το θυμάται.
+      Δεξί κλικ → «Επαναφορά πλάτους στηλών».</li>
+  <li><b>Αρχείο ρυθμίσεων</b> (θέμα, πρότυπα, πλάτη στηλών, φίλτρα ΔΕΔΔΗΕ): <span class="mono">%AppData%\BabiBot\settings.json</span>.
+      Αρχείο καταγραφής σφαλμάτων: <span class="mono">%AppData%\BabiBot\log.txt</span> (χωρίς κωδικούς).</li>
+  <li>Ελέγξτε πάντα τα σχέδια στο AutoCAD πριν τα στείλετε.</li>
+</ul>
+
+<div class="foot">BabiBot · <a href="./">Λήψη</a> · <a href="odigies.pdf">PDF</a></div>
+</body>
+</html>
