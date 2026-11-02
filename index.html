@@ -116,6 +116,11 @@
            color: var(--accent); background: var(--accent-soft); border: 1px solid var(--border); transition: transform .15s, border-color .15s; }
   .guide:hover, .guide:focus-visible { transform: translateY(-2px); border-color: var(--accent); outline: none; }
 
+  /* προειδοποίηση ότι η έκδοση Android είναι alpha */
+  .alpha { margin: 18px 0 0; padding: 12px 16px; border-radius: 14px; text-align: left; line-height: 1.45; font-size: .92rem;
+           background: #FDF3E1; color: #6B4500; border: 1px solid #F0C97A; animation: fade-up .7s .5s both; }
+  .alpha b { display: block; margin-bottom: 2px; }
+  @media (prefers-color-scheme: dark) { .alpha { background: #3A2C12; color: #F5D38E; border-color: #6B5221; } }
   .steps { text-align: left; margin: 26px 0 0; padding: 0; list-style: none; display: grid; gap: 10px; animation: fade-up .7s .9s both; }
   .steps li { display: flex; gap: 12px; align-items: flex-start; background: var(--accent-soft); border-radius: 14px; padding: 12px 14px; line-height: 1.4; }
   .steps .n { flex: none; width: 26px; height: 26px; border-radius: 50%; background: var(--accent); color: #fff;
@@ -254,6 +259,7 @@
     </div>
 
     <div data-os="android">
+      <div class="alpha"><b>⚠️ Έκδοση alpha</b>Η εφαρμογή για Android είναι ακόμα σε δοκιμές. Μπορεί να έχει λάθη, γι' αυτό ελέγχετε ότι οι φωτογραφίες και τα στοιχεία φτάνουν σωστά στο PC.</div>
       <a class="btn" href="https://github.com/WantedHool/BabiBot-Mobile-releases/releases/latest/download/BabiBot.apk">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <path d="M12 3v12"/><path d="M6.5 10.5 12 16l5.5-5.5"/><path d="M4 20h16"/>
